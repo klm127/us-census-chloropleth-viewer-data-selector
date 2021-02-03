@@ -1,0 +1,308 @@
+    "United States": {
+        "Total": {
+            "Population 15 years and over": {
+                "Population 15 years and over": "267720772",
+                "AGE AND SEX": {
+                    "Males 15 years and over": {
+                        "Males 15 years and over": "130629205",
+                        "15 to 19 years": "10903653",
+                        "20 to 34 years": "34113759",
+                        "35 to 44 years": "20920715",
+                        "45 to 54 years": "20155362",
+                        "55 to 64 years": "20491435",
+                        "65 years and over": "24044281"
+                    },
+                    "Females 15 years and over": {
+                        "Females 15 years and over": "137091567",
+                        "15 to 19 years": "10449871",
+                        "20 to 34 years": "32933396",
+                        "35 to 44 years": "20994130",
+                        "45 to 54 years": "20707745",
+                        "55 to 64 years": "21976678",
+                        "65 years and over": "30029747"
+                    }
+                },
+                "undefined": "267720772",
+                "RACE AND HISPANIC OR LATINO ORIGIN": {
+                    "One race": {
+                        "One race": "260749549",
+                        "White": "196327960",
+                        "Black or African American": "33514958",
+                        "American Indian and Alaska Native": "2243992",
+                        "Asian": "15727443",
+                        "Native Hawaiian and Other Pacific Islander": "495863",
+                        "Some other race": "12439333"
+                    },
+                    "Two or more races": "6971223",
+                    "Hispanic or Latino origin (of any race)": "44878752",
+                    "White alone": "166753657"
+                }
+            },
+            "LABOR FORCE PARTICIPATION": {
+                "Males 16 years and over": {
+                    "Males 16 years and over": "88124016",
+                    "In labor force": "135038002"
+                },
+                "Females 16 years and over": {
+                    "Females 16 years and over": "79377718",
+                    "In labor force": "6.0"
+                }
+            },
+            "PERCENT ALLOCATED": {
+                "Marital status": "47.6"
+            }
+        },
+        " not Hispanic or Latino": "(X)",
+        "Now married (except separated)": {
+            "Population 15 years and over": {
+                "Population 15 years and over": "49.1",
+                "AGE AND SEX": {
+                    "Males 15 years and over": {
+                        "Males 15 years and over": "0.9",
+                        "15 to 19 years": "25.7",
+                        "20 to 34 years": "59.5",
+                        "35 to 44 years": "64.1",
+                        "45 to 54 years": "65.3",
+                        "55 to 64 years": "68.6",
+                        "65 years and over": "46.3"
+                    },
+                    "Females 15 years and over": {
+                        "Females 15 years and over": "1.1",
+                        "15 to 19 years": "32.8",
+                        "20 to 34 years": "61.0",
+                        "35 to 44 years": "62.4",
+                        "45 to 54 years": "60.2",
+                        "55 to 64 years": "45.1",
+                        "65 years and over": "47.6"
+                    }
+                },
+                "undefined": "48.0",
+                "RACE AND HISPANIC OR LATINO ORIGIN": {
+                    "One race": {
+                        "One race": "50.9",
+                        "White": "29.5",
+                        "Black or African American": "35.6",
+                        "American Indian and Alaska Native": "58.2",
+                        "Asian": "43.2",
+                        "Native Hawaiian and Other Pacific Islander": "42.2",
+                        "Some other race": "33.7"
+                    },
+                    "Two or more races": "42.6",
+                    "Hispanic or Latino origin (of any race)": "52.1",
+                    "White alone": "49.9"
+                }
+            },
+            "LABOR FORCE PARTICIPATION": {
+                "Males 16 years and over": {
+                    "Males 16 years and over": "47.0",
+                    "In labor force": "47.4"
+                },
+                "Females 16 years and over": {
+                    "Females 16 years and over": "(X)",
+                    "In labor force": "5.7"
+                }
+            },
+            "PERCENT ALLOCATED": {
+                "Marital status": "2.7"
+            }
+        },
+        "Widowed": {
+            "Population 15 years and over": {
+                "Population 15 years and over": "0.0",
+                "AGE AND SEX": {
+                    "Males 15 years and over": {
+                        "Males 15 years and over": "0.1",
+                        "15 to 19 years": "0.4",
+                        "20 to 34 years": "1.0",
+                        "35 to 44 years": "2.5",
+                        "45 to 54 years": "11.0",
+                        "55 to 64 years": "8.6",
+                        "65 years and over": "0.0"
+                    },
+                    "Females 15 years and over": {
+                        "Females 15 years and over": "0.2",
+                        "15 to 19 years": "0.9",
+                        "20 to 34 years": "2.5",
+                        "35 to 44 years": "7.2",
+                        "45 to 54 years": "31.6",
+                        "55 to 64 years": "5.7",
+                        "65 years and over": "5.8"
+                    }
+                },
+                "undefined": "6.1",
+                "RACE AND HISPANIC OR LATINO ORIGIN": {
+                    "One race": {
+                        "One race": "5.5",
+                        "White": "5.1",
+                        "Black or African American": "4.4",
+                        "American Indian and Alaska Native": "4.9",
+                        "Asian": "2.9",
+                        "Native Hawaiian and Other Pacific Islander": "3.0",
+                        "Some other race": "3.4"
+                    },
+                    "Two or more races": "6.6",
+                    "Hispanic or Latino origin (of any race)": "2.7",
+                    "White alone": "0.9"
+                }
+            },
+            "LABOR FORCE PARTICIPATION": {
+                "Males 16 years and over": {
+                    "Males 16 years and over": "2.8",
+                    "In labor force": "(X)"
+                },
+                "Females 16 years and over": {
+                    "Females 16 years and over": "10.9",
+                    "In labor force": "9.6"
+                }
+            },
+            "PERCENT ALLOCATED": {
+                "Marital status": "0.0"
+            }
+        },
+        "Divorced": {
+            "Population 15 years and over": {
+                "Population 15 years and over": "2.5",
+                "AGE AND SEX": {
+                    "Males 15 years and over": {
+                        "Males 15 years and over": "9.8",
+                        "15 to 19 years": "15.2",
+                        "20 to 34 years": "17.1",
+                        "35 to 44 years": "12.8",
+                        "45 to 54 years": "12.2",
+                        "55 to 64 years": "0.1",
+                        "65 years and over": "3.6"
+                    },
+                    "Females 15 years and over": {
+                        "Females 15 years and over": "12.2",
+                        "15 to 19 years": "18.1",
+                        "20 to 34 years": "19.9",
+                        "35 to 44 years": "16.2",
+                        "45 to 54 years": "10.9",
+                        "55 to 64 years": "11.0",
+                        "65 years and over": "11.5"
+                    }
+                },
+                "undefined": "11.8",
+                "RACE AND HISPANIC OR LATINO ORIGIN": {
+                    "One race": {
+                        "One race": "13.3",
+                        "White": "5.3",
+                        "Black or African American": "8.1",
+                        "American Indian and Alaska Native": "7.7",
+                        "Asian": "9.3",
+                        "Native Hawaiian and Other Pacific Islander": "8.6",
+                        "Some other race": "12.0"
+                    },
+                    "Two or more races": "9.8",
+                    "Hispanic or Latino origin (of any race)": "8.9",
+                    "White alone": "12.4"
+                }
+            },
+            "LABOR FORCE PARTICIPATION": {
+                "Males 16 years and over": {
+                    "Males 16 years and over": "(X)",
+                    "In labor force": "1.8"
+                },
+                "Females 16 years and over": {
+                    "Females 16 years and over": "1.6",
+                    "In labor force": "0.1"
+                }
+            },
+            "PERCENT ALLOCATED": {
+                "Marital status": "0.9"
+            }
+        },
+        "Separated": {
+            "Population 15 years and over": {
+                "Population 15 years and over": "2.2",
+                "AGE AND SEX": {
+                    "Males 15 years and over": {
+                        "Males 15 years and over": "2.5",
+                        "15 to 19 years": "2.1",
+                        "20 to 34 years": "1.3",
+                        "35 to 44 years": "2.0",
+                        "45 to 54 years": "0.1",
+                        "55 to 64 years": "1.6",
+                        "65 years and over": "3.3"
+                    },
+                    "Females 15 years and over": {
+                        "Females 15 years and over": "3.3",
+                        "15 to 19 years": "2.5",
+                        "20 to 34 years": "1.2",
+                        "35 to 44 years": "1.8",
+                        "45 to 54 years": "1.8",
+                        "55 to 64 years": "1.5",
+                        "65 years and over": "3.3"
+                    }
+                },
+                "undefined": "2.7",
+                "RACE AND HISPANIC OR LATINO ORIGIN": {
+                    "One race": {
+                        "One race": "1.1",
+                        "White": "2.5",
+                        "Black or African American": "3.1",
+                        "American Indian and Alaska Native": "2.1",
+                        "Asian": "2.9",
+                        "Native Hawaiian and Other Pacific Islander": "1.3",
+                        "Some other race": "1.6"
+                    },
+                    "Two or more races": "1.5",
+                    "Hispanic or Latino origin (of any race)": "2.1",
+                    "White alone": "2.3"
+                }
+            },
+            "LABOR FORCE PARTICIPATION": {
+                "Males 16 years and over": {
+                    "Males 16 years and over": "33.9",
+                    "In labor force": "37.1"
+                },
+                "Females 16 years and over": {
+                    "Females 16 years and over": "99.0",
+                    "In labor force": "70.8"
+                }
+            },
+            "PERCENT ALLOCATED": {
+                "Marital status": "28.2"
+            }
+        },
+        "Never married": {
+            "Population 15 years and over": {
+                "Population 15 years and over": "17.2",
+                "AGE AND SEX": {
+                    "Males 15 years and over": {
+                        "Males 15 years and over": "13.0",
+                        "15 to 19 years": "6.2",
+                        "20 to 34 years": "30.8",
+                        "35 to 44 years": "98.7",
+                        "45 to 54 years": "61.8",
+                        "55 to 64 years": "22.7",
+                        "65 years and over": "13.7"
+                    },
+                    "Females 15 years and over": {
+                        "Females 15 years and over": "10.2",
+                        "15 to 19 years": "6.0",
+                        "20 to 34 years": "33.9",
+                        "35 to 44 years": "33.4",
+                        "45 to 54 years": "30.0",
+                        "55 to 64 years": "50.0",
+                        "65 years and over": "43.3"
+                    }
+                },
+                "undefined": "31.0",
+                "RACE AND HISPANIC OR LATINO ORIGIN": {
+                    "One race": {
+                        "One race": "41.4",
+                        "White": "44.1",
+                        "Black or African American": "51.9",
+                        "American Indian and Alaska Native": "42.5",
+                        "Asian": "28.1",
+                        "Native Hawaiian and Other Pacific Islander": "36.1",
+                        "Some other race": "35.9"
+                    },
+                    "Two or more races": "29.8",
+                    "Hispanic or Latino origin (of any race)": "34.5",
+                    "White alone": "(X)"
+                }
+            }
+        }
+    }

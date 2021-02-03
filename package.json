@@ -1,0 +1,26 @@
+{
+  "name": "members-to-dom",
+  "version": "1.0.0",
+  "description": "maps object properties to Select/Option boxes in DOM",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node ./tests/test-KeyModeler.js",
+    "start": "node server.js",
+    "example": "start KeyModelerExample.html",
+    "document": "jsdoc . & start out/index.html"
+  },
+  "keywords": [
+    "dom",
+    "select",
+    "DOMElement",
+    "map",
+    "members",
+    "object",
+    "properties"
+  ],
+  "author": "klm127",
+  "license": "MIT"
+}
