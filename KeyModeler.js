@@ -1,18 +1,19 @@
 /**
- * Creates drop down select HTMLElements with options corresponding to a model object's keys and the keys of subobjects contained therein. For use with selecting data to be mapped in some way. 
+ * Creates drop down select HTMLElements with options corresponding to a model object's keys and the keys of subobjects contained therein. For use with selecting data to be mapped in some way. Use `.KeyModeler-Select` and `.KeyModeler-Option` classes for styling.
  * @class
  * @property {HTMLElement} container - The container
  * @property {Object} modelObject - The object whose properties will be mapped onto HTMLSelect Elements.
  * @property {Array} selectElements - An array of HTMLSelectElements aligned with modelObject property depth.
  * @property {Array} selectedValues - updated whenever a select option is changed
+ * @property {EventListener} mapListener - Updated when instance of KeyModeler is passed to USCensusMap. Attaches an event listener for changes to KeyModeler values to update USCensusMap display.
  */
 class KeyModeler {
 /**
  * Constructing creates the first element in the DOM element or ID passed as a parameter
  * @param {Object} modelObject An object whose nested properties are to be displayed in DOMSelect Options
- * @param {(HTMLElement|string)} [container='KeyModeler Graph'] An HTML element or ID
+ * @param {(HTMLElement|string)} container An HTML element or ID to contain the select elements
  */
-  constructor(modelObject, container='KeyModeler-Graph') {
+  constructor(modelObject, container) {
       if(!(container instanceof HTMLElement)) {
           this.DOMcontainer = document.getElementById(container);
       }
@@ -33,8 +34,10 @@ class KeyModeler {
         let objProps = Object.keys(subobj);
         this.selectedValues.push(objProps[0]);
         let selectElement = document.createElement('select');
+        selectElement.className = "KeyModeler-Select"
         objProps.forEach( (prop)=> {
             let option = document.createElement('option');
+            option.className = "KeyModeler-Option"
             option.text = prop;
             option.value = prop;
             selectElement.appendChild(option);

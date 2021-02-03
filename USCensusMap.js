@@ -1,18 +1,35 @@
 /**
- * Displays US Census data on the DOM using a geoAlbers projection. Requires {@link https://d3js.org/d3.v4.min.js}
+ * Displays US Census data on the DOM using a geoAlbers projection. Requires {@link https://d3js.org/d3.v4.min.js d3}. 
+ * 
+ * See {@link https://github.com/klm127/census-csv-parser census-csv-parser} for a library built for parsing census data .csvs
  * 
  * @requires https://d3js.org/d3.v4.min.js
  * @class
- * @property {GeoJson} geodata An object representing features to be displayed as an svg
- * @property {CensusDataJson} censusdata An object representing data to be mapped, where the keymodeler contains a model object of this data. 
- * @property {KeyModeler} keymodeler The object containing a model object of censusdata with the property **selectedvalues** of type array representing the user-selected properties to displayed on the map
- * @property {HTMLElement | string} [container='USCensusMap'] The element to contain the SVG. Map will scale to container element's size.
- * @property {HTMLElement } tooltip Created on renderMap. Access styling with ID #USCensusTooltip. Has #usc-tool-state, #usc-tool-prop, #usc-tool-val as child elements.
- * @property {string} [tooltipShowEventType='mouseenter'] the event to trigger a tooltip move. I.e - click, mouseenter
- * @property {interpolated_Color_scale} scheme a color scale to interpolate @link {"https://github.com/d3/d3-scale-chromatic/blob/v2.0.0/README.md#interpolateBrBG#sequential-multi-hue"}
+ * @property {Object.<GeoJson>} geodata An object representing features to be displayed as an svg map with a US centric projection
+ * @property {Object} censusdata An object representing data to be mapped, where the keymodeler contains a model object of this same data.
+ * @property {KeyModeler} keymodeler An object which helps a user select values to display and interacts with USCensusMap
+ * @property {HTMLElement | string} DOMcontainer The element to contain the SVG. Map will scale to container element's size.
+ * @property {HTMLElement } tooltip Created on map render. Access styling with ID #USCensusTooltip. Has #usc-tool-state, #usc-tool-prop, #usc-tool-val as child elements.
+ * @property {HTMLElement} extremaDiv Created on map render. Access styling to the min and max areas with #USCensus-extrema-div
+ * @property {string} [tooltipShowEventType='mouseenter touchstart'] the event to trigger a tooltip move. I.e - click, mouseenter
+ * @property {string} [tooltipHideEventType='mouseleave touchend'] the event to trigger tooltip hiding
+ * @property {interpolatedColorScheme} [scheme=d3.interpolateInferno] a color scale to interpolate. Default is d3.interpolateInferno. See d3 for other options: {@link https://github.com/d3/d3-scale-chromatic/blob/v2.0.0/README.md#user-content-sequential-multi-hue sequential multi hue interpolator}
+ * @property {boolean} [doesRenderTitle=true] Whether a generated title made from selected properties should be displayed
  */
 class USCensusMap {
-    constructor(keymodeler,geodata, censusdata, tooltipShowEventType ="mouseenter",tooltipHideEventType="mouseleave",container="USCensusMap") {
+    /**
+     * 
+     * @param {KeyModeler} keymodeler KeyModeler object for selecting data to be paired with this map
+     * @param {Object.<GeoJson>} geodata Data in GeoJson format. Other formats (topo json) will probably not work, as this class uses projections
+     * @param {Object} censusdata Data to be referenced for coloring map. Must be the same structure as that mapped by the KeyModeler object.
+     * @param {(string|HTMLElement)} container The HTML element or ID of the element which will contain the map. Map size will be scaled to that element's width.
+     * @param {string} [tooltipShowEventType="mouseenter touchstart"] Event triggering tooltip display
+     * @param {string} [tooltipHideEventType="mouseleave touchend"] Event triggering tooltip hide
+     * @param {d3.<Interpolator>} [sequentialmultihue=d3.interpolateInferno] Sets the default d3 sequential interpolator to color the map. {@link https://github.com/d3/d3-scale-chromatic/blob/v2.0.0/README.md#user-content-sequential-multi-hue sequential multi hue interpolator}
+     * @param {boolean} [guessFormatting=true] If set to true, will attempt to guess formatting of number data. Large numbers will be given commas. Ranges where the max is less than 100 will be given % signs.
+     * @param {boolean} [resize=true] If true, will attach eventlistener to window and re-render itself when size changes
+     */
+    constructor(keymodeler,geodata, censusdata, container, tooltipShowEventType ="mouseenter touchstart",tooltipHideEventType="mouseleave touchend", sequentialmultihue=d3.interpolateInferno, guessFormatting=true,resize=true ) {
         if(container instanceof HTMLElement) {
             this.DOMcontainer = container;
         }
@@ -25,11 +42,15 @@ class USCensusMap {
         this.tooltipShowEventType = tooltipShowEventType;
         this.tooltipHideEventType = tooltipHideEventType;
         this.doesRenderTitle = true;
-        this.scheme = d3.interpolateInferno;
+        this.scheme = sequentialmultihue;
+        this.guessFormatting = guessFormatting
         this.renderMap();
         let that = this;
         this.keymodeler.mapListener = () => {
             that.renderData();
+        }
+        if(resize) {
+            window.addEventListener('resize', (e)=> this.renderMap());
         }
     }
     /**
@@ -69,6 +90,8 @@ class USCensusMap {
             .style('left',width*0.56 + 'px')
             .style('top',width*0.55 +'px')
             .style('width',width*0.16+'px')
+            .style('display','grid')
+            .style('grid-template-columns','auto auto auto');
         //tooltip
         this.tooltip = d3.select(this.DOMcontainer.parentNode)
             .append('div')
@@ -92,7 +115,7 @@ class USCensusMap {
         this.pathGroup.selectAll("path")
             .data(this.geodata.features)
             .enter().append("path")
-              .attr("id",(data) => data.properties.NAME)
+              .attr("state-name",(data) => data.properties.NAME)
               .attr("stroke","black")
               .attr("stroke-width",0.5)
               .attr("fill","white")
@@ -105,6 +128,9 @@ class USCensusMap {
               })
         this.renderData();
     }
+    /**
+     * Renders the data to be displayed, coloring features, creating a new legend, and creating the min and max extrema area
+     */
     renderData() {
         if(this.doesRenderTitle) {
             let proptext = this.keymodeler.selectedValues.join(' | ');
@@ -165,34 +191,50 @@ class USCensusMap {
         let minState = stateKeys[minIndex];
         let maxIndex = datarange.indexOf(maxData);
         let maxState = stateKeys[maxIndex];
-        let mindiv = this.extremaDiv.append('div')
-            .attr('class','USCensus-extrema')
-            .style('display','flex')
-            .style('justify-content','space-between')
-        mindiv.append('div')
+        this.extremaDiv.append('div')
+            .attr('id','extrema-min-color')
             .style('width',extremaWidth/6+'px')
             .style('min-height','10px')
-            .style('background-color',colorScale(minData))
-        mindiv.append('div')
-            .text(minState)
-        mindiv.append('div')
-            .text(minData)
-        let maxdiv = this.extremaDiv.append('div')
-            .attr('class','USCensus-extrema')
-            .style('display','flex')
-            .style('justify-content','space-between')
-        maxdiv.append('div')
+            .style('background-color',colorScale(minData));
+        this.extremaDiv.append('div')
+            .attr('id','extrema-min-state')
+            .text(minState);
+        this.extremaDiv.append('div')
+            .attr('id','extrema-min-val')
+            .text((this.guessFormatting) ? this.formatVal(minData) : minData);
+        this.extremaDiv.append('div')
+            .attr('id','extrema-max-color')
             .style('width',extremaWidth/6+'px')
             .style('min-height','10px')
-            .style('background-color',colorScale(maxData))
-        maxdiv.append('div')
+            .style('background-color',colorScale(maxData));
+        this.extremaDiv.append('div')
+            .attr('id','extrema-max-state')
             .text(maxState);
-        maxdiv.append('div')
-            .text(maxData);
+        this.extremaDiv.append('div')
+            .attr('id','extrema-max-val')
+            .text((this.guessFormatting) ? this.formatVal(maxData) :maxData);
     }
     /**
-     * Moves tooltip the point of event and displays data about the feature
-     * @listens hoverEvent Mouse hovers over features on the maps
+     * @private
+     * @param {@} val A number whose formatting to guess
+     */
+    formatVal(val) {
+        let test = parseFloat(val);
+        if(isNaN(test)) {
+            return val;
+        }
+        else {
+            if(Math.abs(+val) > 100) {
+                return val.toString().replace(/,/g,"").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+            else {
+                return val + '%';
+            }
+        }
+    }
+    /**
+     * Moves tooltip the point of event and displays data about the feature. Attached to features.
+     * @listens MouseEvent By default, listens for mouse hover
      * @param {MouseEvent} event A hover event over a path
      * @param {Object} feature The hovered over feature
      * @param {HTMLElement} tooltip The tooltip to move
@@ -205,48 +247,16 @@ class USCensusMap {
         let state = this.censusdata[statename];
         let val = this.keymodeler.getPropVal(state);
         this.tooltip.select('#usc-tool-val')
-            .text(val);
+            .text( (this.formatVal) ? this.formatVal(val) : val);
         this.tooltip.style('left',event.pageX+15+'px');
         this.tooltip.style('top',event.pageY-25+'px'); 
     }
     /**
-     * Sets tooltip opacity to 0
+     * @listens MouseEvent By default, listens for mouse exit. Attached to features.
+     * Sets tooltip opacity to 0.
      */
     tooltipHide() {
         this.tooltip.style('opacity',0);
     }
 }
-
-/* const features = us.features;
-
-const width = 600;
-const height = 400;
-    
-let svg = d3.select("#us-map")
-    .append("svg")
-    .attr('width',width)
-    .attr('height',height)
-
-let projection = d3.geoMercator()
-    .scale(width/1.5)
-    .rotate([90,0])
-    .center([20,20])
-    .translate([width/2,height/2]);
-
-let albers = d3.geoAlbersUsa()
-    .scale(width*1.2)
-    .translate([width/2,height/2])
-
-let mapgroup = svg
-    .append("g");
-
-
-mapgroup.selectAll("path")
-  .data(features)
-  .enter().append("path")
-    .attr("id",(d) => d.properties.NAME)
-    .attr("stroke","black")
-    .attr("stroke-width",0.5)
-    .attr("fill","white")
-    .attr("d", d3.geoPath().projection(albers)) */
 
