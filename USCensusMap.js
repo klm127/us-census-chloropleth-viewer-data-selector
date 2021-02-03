@@ -27,9 +27,9 @@ class USCensusMap {
      * @param {string} [tooltipHideEventType="mouseleave touchend"] Event triggering tooltip hide
      * @param {d3.<Interpolator>} [sequentialmultihue=d3.interpolateInferno] Sets the default d3 sequential interpolator to color the map. {@link https://github.com/d3/d3-scale-chromatic/blob/v2.0.0/README.md#user-content-sequential-multi-hue sequential multi hue interpolator}
      * @param {boolean} [guessFormatting=true] If set to true, will attempt to guess formatting of number data. Large numbers will be given commas. Ranges where the max is less than 100 will be given % signs.
-     * @param {boolean} [resize=true] If true, will attach eventlistener to window and re-render itself when size changes
+     * @param {boolean} [resize=false] If true, will attach eventlistener to window and re-render itself when size changes
      */
-    constructor(keymodeler,geodata, censusdata, container, tooltipShowEventType ="mouseenter touchstart",tooltipHideEventType="mouseleave touchend", sequentialmultihue=d3.interpolateInferno, guessFormatting=true,resize=true ) {
+    constructor(keymodeler,geodata, censusdata, container, tooltipShowEventType ="mouseenter touchstart",tooltipHideEventType="mouseleave touchend", sequentialmultihue=d3.interpolateInferno, guessFormatting=true,resize=false ) {
         if(container instanceof HTMLElement) {
             this.DOMcontainer = container;
         }
@@ -111,10 +111,12 @@ class USCensusMap {
             .translate([width/2,height/2]);
         //paths
         this.pathGroup = svg
-            .append("g");
+            .append("g")
+            .attr('id','census-map-paths-group');
         this.pathGroup.selectAll("path")
             .data(this.geodata.features)
             .enter().append("path")
+              .attr('class','census-map-feature')
               .attr("state-name",(data) => data.properties.NAME)
               .attr("stroke","black")
               .attr("stroke-width",0.5)

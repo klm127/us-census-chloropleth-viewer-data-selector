@@ -1,15 +1,15 @@
 {
-  "name": "members-to-dom",
+  "name": "us-census-chloropleth-viewer-data-selector",
   "version": "1.0.0",
-  "description": "maps object properties to Select/Option boxes in DOM",
-  "main": "server.js",
+  "description": "Two classes - one for mapping object properties to select boxes and another for getting those properties and projecting data values onto an albers US projection. For use with parsed census data",
+  "main": "KeyModelerExample.html",
   "directories": {
-    "test": "tests"
+    "data": "data"
   },
   "scripts": {
     "test": "node ./tests/test-KeyModeler.js",
     "start": "node server.js",
-    "example": "start KeyModelerExample.html",
+    "example": "start Example.html",
     "document": "jsdoc . & start out/index.html"
   },
   "keywords": [
@@ -19,7 +19,12 @@
     "map",
     "members",
     "object",
-    "properties"
+    "properties",
+    "chloropleth",
+    "cloropath",
+    "census",
+    "map-data",
+    "visualization"
   ],
   "author": "klm127",
   "license": "MIT"
